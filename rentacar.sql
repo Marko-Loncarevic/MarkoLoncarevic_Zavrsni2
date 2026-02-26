@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 07, 2026 at 11:46 AM
+-- Generation Time: Feb 26, 2026 at 06:50 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -24,6 +24,30 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `accounts`
+--
+
+CREATE TABLE `accounts` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `ime` varchar(25) NOT NULL,
+  `prezime` varchar(25) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password_hash` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `accounts`
+--
+
+INSERT INTO `accounts` (`id`, `ime`, `prezime`, `email`, `password_hash`, `created_at`) VALUES
+(1, 'Dunja', 'Dunjic', 'dunja@gmail.com', '$2y$10$W1UXxP0RFse8ej5B93skxO4yqME1sN3/s2TM/1BI2jLuNmQF3Twla', '2026-02-21 23:39:20'),
+(2, 'Tin', 'Ujević', 'tin@gmail.com', '$2y$10$9Klj4s1aogXobYnZSMP.HOFhZc5lVgoiGdNQ3bquwI6QtbElpzq2W', '2026-02-21 23:58:35'),
+(3, 'Marko', 'Lončarević', 'loncarevicmarko809@gmail.com', '$2y$10$bE9SoaUOnv9s1pW32YGhFuDS2r/XYrq8XehEiN.GZcg12Hr0G2g9.', '2026-02-22 13:39:09');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `karakteristike_automobila`
 --
 
@@ -39,17 +63,13 @@ CREATE TABLE `karakteristike_automobila` (
 --
 
 INSERT INTO `karakteristike_automobila` (`Godiste`, `Kilometraza`, `Registracija`, `VoziloID`) VALUES
-(2018, 45000, 'DA123AB', 50),
-(2017, 60000, 'DA456CD', 51),
 (2019, 30000, 'DA789EF', 52),
-(2020, 25000, 'DA234GH', 53),
 (2016, 80000, 'DA567JK', 54),
-(2018, 45000, 'DA890LM', 55),
 (2021, 20000, 'DA678QS', 57),
-(2015, 90000, 'DA901TU', 58),
 (2020, 54000, 'DA782HJ', 63),
 (2020, 121212, 'DA782HJ', 64),
-(1, 1, 'DA782HJ', 65);
+(2025, 1900, 'DA521JJ', 66),
+(2021, 90100, 'DA923LK', 68);
 
 -- --------------------------------------------------------
 
@@ -74,11 +94,23 @@ INSERT INTO `korisnici` (`IDKorisnici`, `ImeKorisnika`, `PrezimeKorisnika`, `Kon
 (3, 'Marko', 'Novak', 'marko.novak@gmail.com'),
 (4, 'Lucija', 'Marić', 'lucija.maric@gmail.com'),
 (5, 'Petar', 'Babić', 'petar.babic@gmail.com'),
-(7, 'Karlo', 'Vuković', 'karlo.vukovic@gmail.com'),
 (8, 'Marija', 'Božić', 'marija.bozic@gmail.com'),
 (9, 'Josip', 'Pavlović', 'josip.pavlovic@gmail.com'),
 (10, 'Matej', 'Knežević', 'mate.knezevicj@gmail.com'),
-(35, 'Marko', 'Loncarevic', 'marko.loncarevic@gmail.com');
+(35, 'Marko', 'Loncarevic', 'marko.loncarevic@gmail.com'),
+(36, 'Marko', 'Maric', 'markomaric@gmail.com'),
+(37, 'Ivo', 'Ivic', 'ivo@gmail.com'),
+(38, 'Karlo', 'Kar', 'kr@gmail.com'),
+(39, 'Marko', 'Maric', 'loncarevicmarko809@gmail.com'),
+(40, 'Karlo', 'Maric', 'karlo@gmail.com'),
+(41, 'mario', 'maric', 'mario@gmail.com'),
+(43, 'fds', 'fs', 'sdf@gmail.com'),
+(44, 'ds', 'ds', 'dsa@gmail.com'),
+(46, 'sa', 'asl', 'asas@gmail.com'),
+(47, 'sa', 'asas', 'sasaS@gmail.com'),
+(48, 'Visnja', 'Visnjic', 'visnja@gmail.com'),
+(49, 'Dunja', 'Dunjic', 'dunja@gmail.com'),
+(50, 'Tin', 'Ujević', 'tin@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -94,26 +126,25 @@ CREATE TABLE `rezervacije` (
   `DatumPocetka` datetime NOT NULL,
   `DatumZavrsetka` datetime NOT NULL,
   `UkupnaCijena` decimal(10,2) NOT NULL,
-  `StatusRezervacije` varchar(20) DEFAULT 'aktivna'
+  `StatusRezervacije` varchar(20) DEFAULT 'aktivna',
+  `AccountID` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `rezervacije`
 --
 
-INSERT INTO `rezervacije` (`IDRezervacija`, `VoziloID`, `KorisnikID`, `DatumRezervacije`, `DatumPocetka`, `DatumZavrsetka`, `UkupnaCijena`, `StatusRezervacije`) VALUES
-(56, 50, 1, '2025-03-29 16:17:27', '2025-03-01 10:00:00', '2025-03-04 10:00:00', 150.00, 'Zavrsena'),
-(57, 51, 2, '2025-03-29 16:17:27', '2025-03-05 09:00:00', '2025-03-10 17:00:00', 250.00, 'Zavrsena'),
-(58, 52, 3, '2025-03-29 16:17:27', '2025-03-09 16:00:00', '2025-03-11 20:00:00', 100.00, 'Zavrsena'),
-(59, 53, 4, '2025-03-29 16:17:27', '2025-03-15 08:00:00', '2025-03-22 08:00:00', 490.00, 'Zavrsena'),
-(62, 50, 1, '2025-03-29 16:29:27', '2025-03-29 16:28:00', '2025-03-31 16:28:00', 100.00, 'Zavrsena'),
-(65, 58, 1, '2025-03-30 13:58:24', '2025-03-30 13:58:00', '2025-03-31 13:58:00', 50.00, 'Zavrsena'),
-(67, 52, 5, '2025-03-30 13:59:20', '2025-03-30 13:59:00', '2025-03-31 13:59:00', 70.00, 'Zavrsena'),
-(68, 58, 1, '2025-03-30 13:59:46', '2025-03-30 13:59:00', '2025-03-31 13:59:00', 50.00, 'Zavrsena'),
-(70, 51, 1, '2025-03-30 14:02:03', '2025-03-29 14:02:00', '2025-03-31 14:02:00', 120.00, 'Zavrsena'),
-(81, 57, 1, '2025-04-07 17:29:49', '2025-04-07 17:29:00', '2025-04-09 17:29:00', 100.00, 'Zavrsena'),
-(83, 63, 9, '2025-05-26 19:27:27', '2025-05-26 19:27:00', '2025-05-28 19:27:00', 246.00, 'Zavrsena'),
-(84, 58, 2, '2026-01-09 17:21:31', '2026-01-09 17:21:00', '2026-01-11 17:21:00', 100.00, 'Zavrsena');
+INSERT INTO `rezervacije` (`IDRezervacija`, `VoziloID`, `KorisnikID`, `DatumRezervacije`, `DatumPocetka`, `DatumZavrsetka`, `UkupnaCijena`, `StatusRezervacije`, `AccountID`) VALUES
+(100, 52, 44, '2026-02-21 15:46:27', '2026-02-21 15:46:00', '2026-02-22 15:46:00', 70.00, 'Otkazana', NULL),
+(102, 57, 46, '2026-02-21 18:26:54', '2026-02-22 18:26:00', '2026-02-24 18:26:00', 150.00, 'Zavrsena', NULL),
+(103, 63, 47, '2026-02-21 18:27:33', '2026-02-25 18:27:00', '2026-02-28 18:27:00', 492.00, 'Otkazana', NULL),
+(105, 52, 48, '2026-02-21 23:37:48', '2026-02-21 23:37:00', '2026-02-27 23:37:00', 420.00, 'Aktivna', NULL),
+(106, 54, 49, '2026-02-21 23:39:46', '2026-02-21 23:39:00', '2026-02-28 23:39:00', 350.00, 'Aktivna', NULL),
+(107, 57, 49, '2026-02-21 23:52:52', '2026-02-21 23:52:00', '2026-02-26 23:52:00', 250.00, 'Otkazana', 1),
+(108, 63, 50, '2026-02-21 23:59:02', '2026-02-23 23:58:00', '2026-02-26 23:59:00', 492.00, 'Aktivna', 2),
+(109, 64, 49, '2026-02-22 00:29:29', '2026-02-22 00:29:00', '2026-02-26 00:29:00', 92.00, 'Zavrsena', 1),
+(110, 63, 49, '2026-02-22 00:29:47', '2026-02-22 00:29:00', '2026-02-22 02:29:00', 123.00, 'Zavrsena', 1),
+(111, 68, 39, '2026-02-22 13:39:42', '2026-02-22 13:39:00', '2026-02-24 13:39:00', 100.00, 'Zavrsena', 3);
 
 -- --------------------------------------------------------
 
@@ -125,26 +156,23 @@ CREATE TABLE `vozila` (
   `IDVozilo` int(11) NOT NULL,
   `Naziv` char(25) NOT NULL,
   `Model` char(25) DEFAULT NULL,
+  `TipVozila` varchar(30) DEFAULT 'Limuzina',
   `CijenaKoristenjaDnevno` float NOT NULL,
-  `Raspolozivost` enum('Dostupno','Nije dostupno') NOT NULL DEFAULT 'Dostupno'
+  `Raspolozivost` enum('Dostupno','Nije dostupno','Rezervirano') NOT NULL DEFAULT 'Dostupno'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `vozila`
 --
 
-INSERT INTO `vozila` (`IDVozilo`, `Naziv`, `Model`, `CijenaKoristenjaDnevno`, `Raspolozivost`) VALUES
-(50, 'Fiat', 'Punto', 50, 'Dostupno'),
-(51, 'Opel', 'Corsa', 60, 'Dostupno'),
-(52, 'Volkswagen', 'Golf', 70, 'Dostupno'),
-(53, 'Mazda', 'CX5', 50, 'Dostupno'),
-(54, 'Opel', 'Astra', 50, 'Dostupno'),
-(55, 'Fiat', 'Punto', 50, 'Dostupno'),
-(57, 'Volkswagen', 'Polo', 50, 'Dostupno'),
-(58, 'Fiat', 'Panda', 50, 'Dostupno'),
-(63, 'Mercedes', 'A klasa', 123, 'Dostupno'),
-(64, 'Mazda', 'cx 30', 23, 'Dostupno'),
-(65, 'asa', 'as', 1, 'Dostupno');
+INSERT INTO `vozila` (`IDVozilo`, `Naziv`, `Model`, `TipVozila`, `CijenaKoristenjaDnevno`, `Raspolozivost`) VALUES
+(52, 'Volkswagen', 'Golf', 'Kompakt', 70, 'Nije dostupno'),
+(54, 'Opel', 'Astra', 'Kompakt', 50, 'Nije dostupno'),
+(57, 'Volkswagen', 'Polo', 'Kompakt', 50, 'Dostupno'),
+(63, 'Mercedes', 'A klasa', 'Limuzina', 123, 'Nije dostupno'),
+(64, 'Mazda', 'cx 30', 'SUV', 23, 'Dostupno'),
+(66, 'BMW', '1 series', 'Limuzina', 100, 'Dostupno'),
+(68, 'Fiat', 'Punto', 'Limuzina', 50, 'Dostupno');
 
 -- --------------------------------------------------------
 
@@ -165,15 +193,24 @@ CREATE TABLE `vozila_slike` (
 --
 
 INSERT INTO `vozila_slike` (`IDSlika`, `VoziloID`, `PutanjaSlike`, `JeGlavna`, `DatumDodavanja`) VALUES
-(1, 64, 'uploads/vehicles/vehicle_64_6977ac333edea0.22675119.png', 1, '2026-01-26 18:02:27'),
-(4, 55, 'uploads/vehicles/vehicle_55_6977ac6e9ab833.42923598.png', 0, '2026-01-26 18:03:26'),
-(11, 55, 'uploads/vehicles/vehicle_55_6977cd7d4458a2.05432875.png', 0, '2026-01-26 20:24:29'),
-(12, 58, 'uploads/vehicles/vehicle_58_6977cd8543bd87.38488696.png', 0, '2026-01-26 20:24:37'),
-(13, 65, 'uploads/vehicles/vehicle_65_6977cdae3a6876.69956330.png', 1, '2026-01-26 20:25:18');
+(18, 52, 'uploads/vehicles/vehicle_52_6991b23a4ed045.49574044.webp', 1, '2026-02-15 11:47:06'),
+(24, 64, 'uploads/vehicles/vehicle_64_6991cd248d0137.58174847.jpg', 1, '2026-02-15 13:41:56'),
+(25, 63, 'uploads/vehicles/vehicle_63_6991cda6701e81.40410932.jpg', 1, '2026-02-15 13:44:06'),
+(27, 54, 'uploads/vehicles/vehicle_54_6991cdd491ba63.33239670.jpg', 1, '2026-02-15 13:44:52'),
+(28, 57, 'uploads/vehicles/vehicle_57_6991ce051a35b0.31736416.jpg', 1, '2026-02-15 13:45:41'),
+(29, 66, 'uploads/vehicles/vehicle_66_6991cec41a8c71.78462457.jpg', 1, '2026-02-15 13:48:52'),
+(31, 68, 'uploads/vehicles/vehicle_68_699af89e542847.49034501.jpg', 1, '2026-02-22 12:37:50');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `accounts`
+--
+ALTER TABLE `accounts`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- Indexes for table `karakteristike_automobila`
@@ -193,7 +230,8 @@ ALTER TABLE `korisnici`
 ALTER TABLE `rezervacije`
   ADD PRIMARY KEY (`IDRezervacija`),
   ADD KEY `KorisnikID` (`KorisnikID`),
-  ADD KEY `fk_rezervacije_vozilo` (`VoziloID`);
+  ADD KEY `fk_rezervacije_vozilo` (`VoziloID`),
+  ADD KEY `fk_rezervacije_account` (`AccountID`);
 
 --
 -- Indexes for table `vozila`
@@ -213,34 +251,40 @@ ALTER TABLE `vozila_slike`
 --
 
 --
+-- AUTO_INCREMENT for table `accounts`
+--
+ALTER TABLE `accounts`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `karakteristike_automobila`
 --
 ALTER TABLE `karakteristike_automobila`
-  MODIFY `VoziloID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `VoziloID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `korisnici`
 --
 ALTER TABLE `korisnici`
-  MODIFY `IDKorisnici` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `IDKorisnici` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `rezervacije`
 --
 ALTER TABLE `rezervacije`
-  MODIFY `IDRezervacija` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `IDRezervacija` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 
 --
 -- AUTO_INCREMENT for table `vozila`
 --
 ALTER TABLE `vozila`
-  MODIFY `IDVozilo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `IDVozilo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `vozila_slike`
 --
 ALTER TABLE `vozila_slike`
-  MODIFY `IDSlika` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `IDSlika` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- Constraints for dumped tables
@@ -257,6 +301,7 @@ ALTER TABLE `karakteristike_automobila`
 -- Constraints for table `rezervacije`
 --
 ALTER TABLE `rezervacije`
+  ADD CONSTRAINT `fk_rezervacije_account` FOREIGN KEY (`AccountID`) REFERENCES `accounts` (`id`) ON DELETE SET NULL,
   ADD CONSTRAINT `fk_rezervacije_vozilo` FOREIGN KEY (`VoziloID`) REFERENCES `vozila` (`IDVozilo`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `rezervacije_ibfk_1` FOREIGN KEY (`VoziloID`) REFERENCES `vozila` (`IDVozilo`),
   ADD CONSTRAINT `rezervacije_ibfk_2` FOREIGN KEY (`KorisnikID`) REFERENCES `korisnici` (`IDKorisnici`);
