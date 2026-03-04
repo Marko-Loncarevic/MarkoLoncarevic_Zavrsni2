@@ -74,7 +74,7 @@ try {
         $stmt = mysqli_prepare($db, "INSERT INTO rezervacije
             (KorisnikID, VoziloID, DatumRezervacije, DatumPocetka, DatumZavrsetka, UkupnaCijena, StatusRezervacije)
             VALUES (?, ?, NOW(), ?, ?, ?, 'Rezervirano')");
-        mysqli_stmt_bind_param($stmt, "iissds", $korisnikID, $voziloID, $odKada, $doKada, $ukupnaCijena, 'Rezervirano');
+        mysqli_stmt_bind_param($stmt, "iissd", $korisnikID, $voziloID, $odKada, $doKada, $ukupnaCijena);
     }
     if (!mysqli_stmt_execute($stmt)) throw new Exception("Greška pri kreiranju rezervacije");
     $rezervacijaID = mysqli_insert_id($db);

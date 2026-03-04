@@ -128,14 +128,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label class="form-label">Email <span class="text-danger">*</span></label>
             <div class="input-icon">
                 <i class="fas fa-envelope"></i>
-                <input type="email" class="form-control" name="email" required value="<?= htmlspecialchars($_POST['email'] ?? '') ?>" placeholder="vas@email.com">
+                <input type="email" class="form-control" name="email" required value="<?= htmlspecialchars($_POST['email'] ?? '') ?>" >
             </div>
         </div>
         <div class="mb-3">
             <label class="form-label">Lozinka <span class="text-danger">*</span></label>
             <div class="input-icon">
                 <i class="fas fa-lock"></i>
-                <input type="password" class="form-control" name="password" placeholder="••••••••" required>
+                <input type="password" class="form-control" name="password"  required>
             </div>
             <div class="pw-hint">Najmanje 6 znakova</div>
         </div>
@@ -143,7 +143,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label class="form-label">Potvrdi lozinku <span class="text-danger">*</span></label>
             <div class="input-icon">
                 <i class="fas fa-lock"></i>
-                <input type="password" class="form-control" name="confirm" placeholder="••••••••" required>
+                <input type="password" class="form-control" name="confirm"  required>
             </div>
         </div>
         <button type="submit" class="btn btn-primary"><i class="fas fa-user-plus me-2"></i>Kreiraj račun</button>

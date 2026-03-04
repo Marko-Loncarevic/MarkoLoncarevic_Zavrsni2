@@ -731,16 +731,16 @@ $totalCount = count($vehicles);
           <div class="row mb-2">
               <div class="col-6">
                   <label class="form-label">Ime <span style="color:#C48B7C;">*</span></label>
-                  <input type="text" class="form-control" name="imeKorisnika" maxlength="25" required placeholder="Marko">
+                  <input type="text" class="form-control" name="imeKorisnika" maxlength="25" >
               </div>
               <div class="col-6">
                   <label class="form-label">Prezime <span style="color:#C48B7C;">*</span></label>
-                  <input type="text" class="form-control" name="prezimeKorisnika" maxlength="25" required placeholder="Horvat">
+                  <input type="text" class="form-control" name="prezimeKorisnika" maxlength="25" >
               </div>
           </div>
           <div class="mb-3">
               <label class="form-label">Email</label>
-              <input type="email" class="form-control" name="emailKorisnika" maxlength="100" placeholder="primjer@email.com">
+              <input type="email" class="form-control" name="emailKorisnika" maxlength="100" >
           </div>
           <div style="background:#fff8f0;border:1px solid #D4A574;border-radius:10px;padding:0.65rem 1rem;margin-bottom:1rem;font-size:0.82rem;color:#3d4a3e;">
               <i class="fas fa-info-circle me-1" style="color:#D4A574;"></i>

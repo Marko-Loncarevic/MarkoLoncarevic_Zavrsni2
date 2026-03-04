@@ -115,7 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label class="form-label">Email </label>
             <div class="input-icon">
                 <i class="fas fa-envelope"></i>
-                <input type="text" class="form-control" name="email" placeholder="vas@email.com" required autofocus
+                <input type="text" class="form-control" name="email"  required autofocus
                        value="<?= htmlspecialchars($_POST['email'] ?? '') ?>">
             </div>
         </div>
@@ -123,7 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label class="form-label">Lozinka</label>
             <div class="input-icon">
                 <i class="fas fa-lock"></i>
-                <input type="password" class="form-control" name="password" placeholder="••••••••" required>
+                <input type="password" class="form-control" name="password"  required>
             </div>
         </div>
         <button type="submit" class="btn btn-primary">
