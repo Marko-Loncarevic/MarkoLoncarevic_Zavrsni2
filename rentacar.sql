@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 26, 2026 at 06:50 PM
+-- Generation Time: May 07, 2026 at 09:50 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -43,7 +43,8 @@ CREATE TABLE `accounts` (
 INSERT INTO `accounts` (`id`, `ime`, `prezime`, `email`, `password_hash`, `created_at`) VALUES
 (1, 'Dunja', 'Dunjic', 'dunja@gmail.com', '$2y$10$W1UXxP0RFse8ej5B93skxO4yqME1sN3/s2TM/1BI2jLuNmQF3Twla', '2026-02-21 23:39:20'),
 (2, 'Tin', 'Ujević', 'tin@gmail.com', '$2y$10$9Klj4s1aogXobYnZSMP.HOFhZc5lVgoiGdNQ3bquwI6QtbElpzq2W', '2026-02-21 23:58:35'),
-(3, 'Marko', 'Lončarević', 'loncarevicmarko809@gmail.com', '$2y$10$bE9SoaUOnv9s1pW32YGhFuDS2r/XYrq8XehEiN.GZcg12Hr0G2g9.', '2026-02-22 13:39:09');
+(3, 'Marko', 'Lončarević', 'loncarevicmarko809@gmail.com', '$2y$10$bE9SoaUOnv9s1pW32YGhFuDS2r/XYrq8XehEiN.GZcg12Hr0G2g9.', '2026-02-22 13:39:09'),
+(4, 'Marko', 'S', 'a@gmail.com', '$2y$10$Mqxv1DWQd6Y8ge.5VgUjy.V88Xhgo0KNNUNfTpujfOom2BVf.AuWC', '2026-05-07 17:00:00');
 
 -- --------------------------------------------------------
 
@@ -115,6 +116,26 @@ INSERT INTO `korisnici` (`IDKorisnici`, `ImeKorisnika`, `PrezimeKorisnika`, `Kon
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `login_attempts`
+--
+
+CREATE TABLE `login_attempts` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `identifier` varchar(255) NOT NULL,
+  `attempted_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `login_attempts`
+--
+
+INSERT INTO `login_attempts` (`id`, `identifier`, `attempted_at`) VALUES
+(8, 'marko@gmail.com', '2026-05-07 17:23:29'),
+(10, 's@gmail.com', '2026-05-07 17:23:45');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `rezervacije`
 --
 
@@ -138,13 +159,15 @@ INSERT INTO `rezervacije` (`IDRezervacija`, `VoziloID`, `KorisnikID`, `DatumReze
 (100, 52, 44, '2026-02-21 15:46:27', '2026-02-21 15:46:00', '2026-02-22 15:46:00', 70.00, 'Otkazana', NULL),
 (102, 57, 46, '2026-02-21 18:26:54', '2026-02-22 18:26:00', '2026-02-24 18:26:00', 150.00, 'Zavrsena', NULL),
 (103, 63, 47, '2026-02-21 18:27:33', '2026-02-25 18:27:00', '2026-02-28 18:27:00', 492.00, 'Otkazana', NULL),
-(105, 52, 48, '2026-02-21 23:37:48', '2026-02-21 23:37:00', '2026-02-27 23:37:00', 420.00, 'Aktivna', NULL),
-(106, 54, 49, '2026-02-21 23:39:46', '2026-02-21 23:39:00', '2026-02-28 23:39:00', 350.00, 'Aktivna', NULL),
+(105, 52, 48, '2026-02-21 23:37:48', '2026-02-21 23:37:00', '2026-02-27 23:37:00', 420.00, 'Zavrsena', NULL),
+(106, 54, 49, '2026-02-21 23:39:46', '2026-02-21 23:39:00', '2026-02-28 23:39:00', 350.00, 'Zavrsena', NULL),
 (107, 57, 49, '2026-02-21 23:52:52', '2026-02-21 23:52:00', '2026-02-26 23:52:00', 250.00, 'Otkazana', 1),
-(108, 63, 50, '2026-02-21 23:59:02', '2026-02-23 23:58:00', '2026-02-26 23:59:00', 492.00, 'Aktivna', 2),
+(108, 63, 50, '2026-02-21 23:59:02', '2026-02-23 23:58:00', '2026-02-26 23:59:00', 492.00, 'Zavrsena', 2),
 (109, 64, 49, '2026-02-22 00:29:29', '2026-02-22 00:29:00', '2026-02-26 00:29:00', 92.00, 'Zavrsena', 1),
 (110, 63, 49, '2026-02-22 00:29:47', '2026-02-22 00:29:00', '2026-02-22 02:29:00', 123.00, 'Zavrsena', 1),
-(111, 68, 39, '2026-02-22 13:39:42', '2026-02-22 13:39:00', '2026-02-24 13:39:00', 100.00, 'Zavrsena', 3);
+(111, 68, 39, '2026-02-22 13:39:42', '2026-02-22 13:39:00', '2026-02-24 13:39:00', 100.00, 'Zavrsena', 3),
+(112, 57, 39, '2026-03-04 17:06:04', '2026-03-04 17:02:00', '2026-03-05 17:02:00', 50.00, 'Zavrsena', NULL),
+(113, 64, 46, '2026-03-04 17:06:20', '2026-03-04 17:06:00', '2026-03-06 17:06:00', 46.00, 'Zavrsena', NULL);
 
 -- --------------------------------------------------------
 
@@ -166,10 +189,10 @@ CREATE TABLE `vozila` (
 --
 
 INSERT INTO `vozila` (`IDVozilo`, `Naziv`, `Model`, `TipVozila`, `CijenaKoristenjaDnevno`, `Raspolozivost`) VALUES
-(52, 'Volkswagen', 'Golf', 'Kompakt', 70, 'Nije dostupno'),
-(54, 'Opel', 'Astra', 'Kompakt', 50, 'Nije dostupno'),
+(52, 'Volkswagen', 'Golf', 'Kompakt', 70, 'Dostupno'),
+(54, 'Opel', 'Astra', 'Kompakt', 50, 'Dostupno'),
 (57, 'Volkswagen', 'Polo', 'Kompakt', 50, 'Dostupno'),
-(63, 'Mercedes', 'A klasa', 'Limuzina', 123, 'Nije dostupno'),
+(63, 'Mercedes', 'A klasa', 'Limuzina', 123, 'Dostupno'),
 (64, 'Mazda', 'cx 30', 'SUV', 23, 'Dostupno'),
 (66, 'BMW', '1 series', 'Limuzina', 100, 'Dostupno'),
 (68, 'Fiat', 'Punto', 'Limuzina', 50, 'Dostupno');
@@ -225,6 +248,13 @@ ALTER TABLE `korisnici`
   ADD PRIMARY KEY (`IDKorisnici`);
 
 --
+-- Indexes for table `login_attempts`
+--
+ALTER TABLE `login_attempts`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_identifier_time` (`identifier`,`attempted_at`);
+
+--
 -- Indexes for table `rezervacije`
 --
 ALTER TABLE `rezervacije`
@@ -254,7 +284,7 @@ ALTER TABLE `vozila_slike`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `karakteristike_automobila`
@@ -269,10 +299,16 @@ ALTER TABLE `korisnici`
   MODIFY `IDKorisnici` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
+-- AUTO_INCREMENT for table `login_attempts`
+--
+ALTER TABLE `login_attempts`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT for table `rezervacije`
 --
 ALTER TABLE `rezervacije`
-  MODIFY `IDRezervacija` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+  MODIFY `IDRezervacija` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
 
 --
 -- AUTO_INCREMENT for table `vozila`
